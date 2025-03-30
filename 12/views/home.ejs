@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="home_container">
+      <h1>Welcome to the home page:</h1>
+      <button class="btn"><a href="/user">Add a new home</a></button>
+      <h2>Homes List</h2>
+      <ul>
+          <% homes.forEach(home => { %>
+              <li><%= home.house_name %></li>
+          <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>
