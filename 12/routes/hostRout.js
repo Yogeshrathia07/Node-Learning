@@ -12,7 +12,8 @@ hostRouter.get("/", (req, res) => {
   //   `);
   console.log("Home page accessed",data);
   // res.sendFile(path.join(__dirname,"..","views","home.ejs"));
-  res.render("home", { homes: data });
+  // res.render("home", { homes: data });
+  res.render("home", { homes: data ,title:"Dynamic name"});
 
 });
 

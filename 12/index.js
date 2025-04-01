@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+// For parsing JSON data
 app.set("view engine", "ejs");
 app.set("views", "views");
 
