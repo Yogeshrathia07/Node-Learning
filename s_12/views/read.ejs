@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Create User</a>
+        <a href="/read">All Users</a>
+    </div>
+    <h1>All users</h1>
+    <div class="users">
+        <% users.forEach(user => { %>
+            <div class="user">
+                <div class="content">
+                    <p><%= user.name %></p>
+                    <p><%= user.email %></p>
+                </div>
+                <div class="content">
+                    <img src="<%= user.image %>" alt="User Image">
+                </div>
+                <button><a href="/delete/<%= user._id %>">delete</a></button>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>

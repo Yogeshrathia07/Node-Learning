@@ -58,7 +58,59 @@ a {
     transition: color 0.3s ease;
 }
 
-a:hover {
+section {
+    margin: 20px auto;
+    padding: 20px;
+    width: 60%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+}
+
+section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+section ul li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section ul li h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #007BFF;
+}
+
+section ul li a {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+section ul li a:hover {
     color: #0056b3;
     text-decoration: underline;
+}
+
+section p {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
 }
