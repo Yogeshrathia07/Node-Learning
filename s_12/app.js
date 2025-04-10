@@ -33,6 +33,21 @@ app.get('/delete/:id', async (req, res) => {
     res.redirect('/read');
 })
 
+app.get('/update/:id', async (req, res) => {
+    let user = await userRouter.findById(req.params.id);
+    res.render('update',{user});
+})
+
+app.post('/update/:id', async (req, res) => {
+    let user = await userRouter.findByIdAndUpdate(
+        req.params.id, 
+        { name: req.body.name, email: req.body.email, image: req.body.image }, 
+        { new: true }
+    );
+    res.redirect('/read');
+})
+
+
 app.listen(3000,()=>{
     console.log("Server is running on http://localhost:3000")
 })

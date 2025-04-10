@@ -55,7 +55,7 @@ form input[type="submit"]:hover {
 }
 .user{
     width: 200px;
-    height: 200px;
+    /* height: 200px; */
     padding: 20px;
     margin: 20px;
     border: 1px solid #ccc;
@@ -100,3 +100,4 @@ form input[type="submit"]:hover {
 .nav a:hover {
     color: #FFD700;
 }
+
