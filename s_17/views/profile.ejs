@@ -12,8 +12,11 @@
             <li><a href="/">Home</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/login">Login</a></li>
+            <li><a href="/profile/update">Profile Picture</a></li>
         </ul>
     </nav>
+    <img src="./images/uploads/<%= user.profilePic%>" alt="Profile Picture">
+
     <h1>Hello <%= user.name %></h1>
     <h3>Write your post here</h3>
     <form action="/post" method="POST">
