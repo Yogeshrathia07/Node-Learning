@@ -16,12 +16,48 @@ app.use(cookieParser());
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const multer = require('multer');
+const crypto = require('crypto');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/images/uploads');
+    },
+    filename: function (req, file, cb) {
+      crypto.randomBytes(16, (err, buffer) => {
+        const fn = buffer.toString('hex') + path.extname(file.originalname);
+        cb(null, fn);
+      });
+    }
+  });
+  
+  const upload = multer({ storage: storage })
+
+
 app.get('/',(req,res)=>{
     res.render('index');
 });
 app.get('/login',(req,res)=>{
     res.render('login');
 });
+
+app.get('/upload_file',(req,res)=>{
+    res.render('upload');
+})
+
+
+// app.post('/upload_file', upload.single("image"),(req,res)=>{
+//     console.log(req.body);
+    
+// })
+
+app.post('/upload_file', upload.single("image"), (req, res) => {
+    console.log(req.file);
+    console.log(req.body);
+    // res.send("File uploaded successfully!");
+    res.redirect('/profile');
+});
+
 
 app.post('/register',async (req,res)=>{
     let {name,email,password,username,age}=req.body;
