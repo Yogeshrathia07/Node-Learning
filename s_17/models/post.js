@@ -9,10 +9,10 @@ const postSchema = new mongoose.Schema({
     },
     date:{type: Date, default: Date.now},
     content: String,
-    likes:{
+    likes:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
-    }
+    }]
 
 });
 

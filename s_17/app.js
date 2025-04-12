@@ -60,7 +60,8 @@ app.post('/login',async (req,res)=>{
         if(result){
             let token=jwt.sign({email:email,userid: user._id},"abcd");
             res.cookie('token',token);
-            res.status(200).send('User logged in successfully');
+            // res.status(200).send('User logged in successfully');
+            return res.redirect('/profile');
         }
         else res.status(400).send('Invalid credentials');
     })
@@ -73,14 +74,45 @@ app.get('/logout',(req,res)=>{
 })
 
 
-app.get('/profile',isloggedin,(req,res)=>{
+app.get('/profile',isloggedin,async (req,res)=>{
+    // let user=await userModel.findOne({email:req.user.email});
+    let user = await userModel.findOne({ email: req.user.email }).populate('posts');
     console.log(req.user);
-    res.render('login');
+    // user.populate('posts');
+    res.render('profile',{user});
 })
+
+app.get('/like/:id', isloggedin, async (req, res) => {
+    let post = await postModel.findOne({ _id: req.params.id }).populate('user');
+
+    if (post.likes.indexOf(req.user.userid) === -1) {
+        post.likes.push(req.user.userid);
+    } else {
+        post.likes.splice(post.likes.indexOf(req.user.userid), 1);
+    }
+    await post.save();
+    res.redirect('/profile');
+});
+
+
+app.get('/edit/:id', isloggedin, async (req, res) => {
+    let post = await postModel.findOne({ _id: req.params.id }).populate('user');
+    res.render('edit', { post });
+});
+app.post('/update/:id', isloggedin, async (req, res) => {
+    let post = await postModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content });
+    // post.content=req.body.content;
+    res.redirect('/profile');
+});
+
+
+
+
 function isloggedin(req,res,next){
     const token = req.cookies.token;
     if (!token) {
-        return res.status(401).send("You are not logged in! Token missing.");
+        // return res.status(401).send("You are not logged in! Token missing.");
+        return res.redirect('/login');
     }
     else
     {
@@ -89,6 +121,19 @@ function isloggedin(req,res,next){
     }
     next();
 }
+
+app.post('/post',isloggedin,async (req,res)=>{
+    let user=await userModel.findOne({email:req.user.email});
+    let post=await postModel.create({
+        user:user._id,
+        content:req.body.content
+    })
+    user.posts.push(post._id);
+    await user.save();
+    console.log("post created successfully");
+    res.redirect('/profile');
+})
+
 
 app.listen(3000,()=>{
     console.log('Server is running on http://localhost:3000');
