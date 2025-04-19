@@ -1,0 +1,48 @@
+<%- include('./partials/header') %>
+
+<div class="page-content">
+  <head>
+    <link rel="stylesheet" href="/stylesheets/createproducts.css" />
+  </head>
+  <% if(success.length > 0){ %>
+  <div class="success-banner">
+    <span><%= success %></span>
+  </div>
+  <% } %>
+
+  <div class="page-container">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <a href="">All Products</a>
+          <a href="">Create new product</a>
+        </nav>
+      </aside>
+      <main class="main-section">
+        <h2>Create New Product</h2>
+        <form
+          autocomplete="off"
+          action="/products/create"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <section class="form-group">
+            <h3>Product Details</h3>
+            <div class="form-field">
+              <label>Product Image</label>
+              <input name="image" type="file" />
+            </div>
+            <div class="grid-row">
+              <input name="name" type="text" placeholder="Product Name" />
+              <input name="price" type="text" placeholder="Product Price" />
+              <input name="discount" type="text" placeholder="Discount Price" />
+            </div>
+          </section>
+          <input class="btn" type="submit" value="Create New Product" />
+        </form>
+      </main>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

@@ -22,4 +22,10 @@ router.post("/create",async (req,res)=>{
     // res.send("Create Owner API");
 })
 
+router.get("/admin",async (req,res)=>{
+    // let owners=await ownerModel.find();
+    let success=req.flash("success");
+    res.render("createProducts",{success});
+});
+
 module.exports=router;

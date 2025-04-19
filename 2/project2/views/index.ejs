@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+<head>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<% if(error.length > 0){ %>
+    <div class="error-banner">
+        <span><%= error %></span>
+    </div>
+<% } %>
+
+<div class="container">
+    <div class="form-container">
+        <div class="form-section">
+            <h3>Welcome to <span class="highlight">Shopping app</span></h3>
+            <h4>Create your account</h4>
+            <form autocomplete="off" action="/users/register" method="post">
+                <input class="input" type="text" placeholder="Full Name" name="fullname">
+                <input class="input" type="email" placeholder="Email" name="email">
+                <input class="input" type="password" placeholder="Password" name="password">
+                <input class="btn" type="submit" value="Create My Account">
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h4>Login your account</h4>
+            <form autocomplete="off" action="/users/login" method="post">
+                <input class="input" type="email" placeholder="Email" name="email">
+                <input class="input" type="password" placeholder="Password" name="password">
+                <input class="btn" type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

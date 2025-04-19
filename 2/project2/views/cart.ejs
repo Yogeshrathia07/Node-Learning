@@ -1,0 +1,69 @@
+<%- include('./partials/header') %>
+<head>
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+</head>
+
+<div class="page-content">
+  <div class="container">
+    <!-- Cart Items -->
+    <div class="cart-left">
+      <% user.cart.forEach(product => { %>
+        <div class="product-item">
+          <div class="product-img">
+            <img src="data:image/jpeg;base64, <%= product.image.toString('base64') %>" alt="<%= product.name %>">
+          </div>
+          <div class="product-details">
+            <h3><%= product.name %></h3>
+            <div class="quantity">
+              <i class="ri-add-line icon-btn"></i>
+              <div class="qty-value">01</div>
+              <i class="ri-subtract-line icon-btn"></i>
+            </div>
+          </div>
+          <div class="total-row">
+            <h4>Net Total</h4>
+            <h2>₹ <%= product.discount || product.price %></h2>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Price Breakdown and Total -->
+    <div class="cart-right">
+      <h3>Price Breakdown</h3>
+      <div class="price-breakdown">
+        <div class="price-row">
+          <h4>Total MRP</h4>
+          <h4>₹ <%= user.cart.reduce((sum, item) => sum + item.price, 0) %></h4>
+        </div>
+        <div class="price-row">
+          <h4>Discount on MRP</h4>
+          <h4>₹ <%= user.cart.reduce((sum, item) => sum + (item.price - (item.discount || item.price)), 0) %></h4>
+        </div>
+        <div class="price-row">
+          <h4>Platform Fee</h4>
+          <h4>₹ 20</h4>
+        </div>
+        <div class="price-row">
+          <h4>Shipping Fee</h4>
+          <h4>FREE</h4>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="total-amount">
+        <h3>Total Amount</h3>
+        <h3 class="final-amount">
+          ₹ <%= user.cart.reduce((sum, item) => sum + (item.discount || item.price), 0) + 20 %>
+        </h3>
+      </div>
+
+      <form action="/checkout" method="POST">
+        <button class="checkout-btn">Proceed to Checkout</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

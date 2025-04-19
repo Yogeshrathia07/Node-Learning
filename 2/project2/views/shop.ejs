@@ -1,0 +1,63 @@
+<%- include('./partials/header') %>
+<head>
+  <link rel="stylesheet" href="/stylesheets/shop.css" />
+</head>
+
+ <% if(success.length > 0){ %>
+  <div class="success-banner">
+    <span><%= success %></span>
+  </div>
+  <% } %>
+
+
+
+<div class="page-content">
+  <div class="container">
+    <div class="sidebar">
+      <div class="sort-section">
+        <h3>Sort by</h3>
+        <form action="/shop">
+          <select class="sort-select" name="sortby">
+            <option value="popular">Popular</option>
+            <option value="newest">Newest</option>
+          </select>
+        </form>
+      </div>
+      <div class="sidebar-links">
+        <a href="">New Collection</a>
+        <a href="">All Products</a>
+        <a href="">Discounted Products</a>
+      </div>
+      <div class="sidebar-filters">
+        <a href="">Filter by:</a>
+        <a href="">Availability</a>
+        <a href="">Discount</a>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="product-list">
+        <% products.forEach(function(product) { %>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+              alt=""
+            />
+          </div>
+          <div class="product-info">
+            <div>
+              <h3><%= product.name %></h3>
+              <h4>₹ <%= product.price %></h4>
+            </div>
+            <a class="add-button" href="/addtocart/<%= product._id %>">
+              <i class="ri-add-line"></i>
+            </a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('./partials/footer') %>

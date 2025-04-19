@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #ffffff;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #3b82f6; /* blue */
+      }
+
+      .navbar-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar-links li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-links li a:hover {
+        color: #3b82f6;
+      }
+      .page-content {
+        padding-top: 80px;
+      }
+    </style>
+  </head>
+
+  <body class="font-['helvetica_now_display']">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <h3 class="navbar-brand">Shopping app</h3>
+        <ul class="navbar-links">
+          <% var loggedin=typeof loggedin !== "undefined"?loggedin:true %> <%
+          if(loggedin){ %>
+          <li><a href="/shop">Shop</a></li>
+          <li><a href="/cart">Cart</a></li>
+          <li><a href="/owners/admin">My Account</a></li>
+          <li><a href="/users/logout">logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>
